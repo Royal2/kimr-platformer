@@ -6,9 +6,12 @@
  <tileset firstgid="157" name="request-tiles" tilewidth="70" tileheight="70">
   <image source="../img/request-tiles.png" width="980" height="490"/>
  </tileset>
+ <tileset firstgid="255" name="building-tiles" tilewidth="70" tileheight="70">
+  <image source="../img/building-tiles.png" width="980" height="490"/>
+ </tileset>
  <layer name="Tile Layer 1" width="20" height="10">
   <data encoding="base64" compression="zlib">
-   eJxbx8DAIICG1wLxGjIxCKxDM4saYB0VzRrMYD8QW1HZPEs88q+A+CWJ5i3AY9Z5IL5Agpn7CZh1DophZr4D4tdQDGK/AeK3QHwAiJ8D8Vk0DAPo4sRiAL6wMdg=
+   eJz7wMDA8IFC/AmIzwPxbSCeCcRWUBofsCEg/wlqHghYAnEpAfX+OMSR3RMLxBeB+AIQXybTvGKoe0AgHkrHQunNZJh3HQnDzItHksdlJi7zkAHInFNo5oHAAiSMbh62eIOJgczZicU8fO4TwoFh5iGbiw0jm3eJAZLOzkHxAygGxecVqDmvCWBQ/F8mQh0MAwA9kEfi
   </data>
  </layer>
 </map>
