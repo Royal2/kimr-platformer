@@ -9,9 +9,12 @@
  <tileset firstgid="255" name="building-tiles" tilewidth="70" tileheight="70">
   <image source="../img/building-tiles.png" width="980" height="490"/>
  </tileset>
+ <tileset firstgid="353" name="mushroom-tiles" tilewidth="70" tileheight="70">
+  <image source="../img/mushroom-tiles.png" width="490" height="490"/>
+ </tileset>
  <layer name="Tile Layer 1" width="20" height="10">
   <data encoding="base64" compression="zlib">
-   eJz7wMDA8IFC/AmIzwPxbSCeCcRWUBofsCEg/wlqHghYAnEpAfX+OMSR3RMLxBeB+AIQXybTvGKoe0AgHkrHQunNZJh3HQnDzItHksdlJi7zkAHInFNo5oHAAiSMbh62eIOJgczZicU8fO4TwoFh5iGbiw0jm3eJAZLOzkHxAygGxecVqDmvCWBQ/F8mQh0MAwA9kEfi
+   eJz7wMDA8IFC/AmIzwPxHSCeCcRWUBofsCEgDzLzHJRtCcSlBNT74xBHdk8sEF8E4gtAfJlM84qh7gGBeCgdC6U3k2HedSQMMy8eSR6XmbjMQwYgcz6jmQcCC5AwunnY4g0mBjJnJxbz8LlPCAeGmYdsLjaMbN4lBkg6OwfFD6AYFJ9XoOa8JoBB8X+ZCHUwDABS8Ef/
   </data>
  </layer>
 </map>
