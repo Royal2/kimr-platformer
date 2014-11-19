@@ -19,7 +19,9 @@ public class GameScreen implements Screen {
         //adding map to renderer, renderer displays map in 2D, 1/70f defining number of units per pixels.
         renderer = new OrthogonalTiledMapRenderer(map, 1/70f);
         //setting size of camera, length + width. (14x14, map = square)
-        camera = new OrthographicCamera(20f, 14f);
+        camera = new OrthographicCamera(14f, 14f);
+        //Set position of the camera (x,y,z). We only used the x and y axis because our game is 2D, not 3D.
+        camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2, 0f); //Dividing the width and height by 2 to align the bottom left corner of the game to the bottom left corner of the window.
     }
 
     //render --> runs on every cpu tick.
