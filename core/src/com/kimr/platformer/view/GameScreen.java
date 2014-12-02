@@ -2,6 +2,7 @@ package com.kimr.platformer.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -34,17 +35,22 @@ public class GameScreen implements Screen {
     //render --> runs on every cpu tick.
     @Override
     public void render(float delta) {
+        //sets game screen background color to clear.
+        Gdx.gl.glClearColor(0.61f, 0.61f, 0.61f, 1f); //divided R,G,B by 255. Set fourth parameter to 1f for 100% opacity.
+        //calls function to clear game screen.
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-    }
-
-    @Override
-    public void resize(int width, int height) {
         //updates camera if it moves.
         camera.update();
         //adjust frame to the camera.
         renderer.setView(camera);
         //drawing itself(the map).
         renderer.render();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
     }
 
     @Override
