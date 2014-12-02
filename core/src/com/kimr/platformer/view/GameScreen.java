@@ -50,7 +50,12 @@ public class GameScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        //resize window width to display 14 units.
+        camera.viewportWidth = 14f;
+        //resize window height to display to 14 units.
+        camera.viewportHeight = 14f * height / width;   //aspect ratio.
+        //updates camera to reflect the new changes.
+        camera.update();
     }
 
     @Override
