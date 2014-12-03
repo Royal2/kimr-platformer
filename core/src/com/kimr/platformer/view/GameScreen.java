@@ -4,9 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.kimr.platformer.model.Player;
 
 /**
  * Created by Student on 11/18/2014.
@@ -15,6 +17,9 @@ public class GameScreen implements Screen {
     public TiledMap map;
     public OrthogonalTiledMapRenderer renderer;
     public OrthographicCamera camera;
+
+    public SpriteBatch spriteBatch;
+    public Player player;
 
     public GameScreen() {
         map = new TmxMapLoader().load("map/Level01.tmx");
@@ -30,6 +35,10 @@ public class GameScreen implements Screen {
         camera = new OrthographicCamera(14f, 14f * (height / width));   //multiplying the width of the game screen by the ratio of the height:width gives us a width that is equal to the height, resulting in a square.
         //Set position of the camera (x,y,z). We only used the x and y axis because our game is 2D, not 3D.
         camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2, 0f); //Dividing the width and height by 2 to align the bottom left corner of the game to the bottom left corner of the window.
+
+        //this enables us to draw 2D object onto screen.
+        spriteBatch = new SpriteBatch();
+        player = new Player();
     }
 
     //render --> runs on every cpu tick.
@@ -46,6 +55,13 @@ public class GameScreen implements Screen {
         renderer.setView(camera);
         //drawing itself(the map).
         renderer.render();
+
+        //calls on spriteBatch to begin drawing.
+        spriteBatch.begin();
+        //uses spriteBatch object to draw the player.
+        player.draw(spriteBatch);
+        //ends spriteBatch.
+        spriteBatch.end();
     }
 
     @Override
