@@ -18,7 +18,7 @@ public class Player {
     public TextureRegion[] spriteFrames;    //one dimensional array.
 
     public Player() {
-        position = new Vector2(0, 0);    //Vector position to the origin.
+        position = new Vector2(1, 7);    //Vector positions the player.
         spriteSheet = new Texture(Gdx.files.internal("img/aliens.png"));    //Set textures as the alien images.
 
         //splits the spriteSheet by width and height.
@@ -44,15 +44,16 @@ public class Player {
                 spriteFrames[counter++] = sprite;
             }
         }
-
     }
     //draw spriteSheet for player.
     public void draw(Batch spriteBatch){
-        spriteBatch.draw(spriteFrames[4], 0, 0, 70, 100);   //sets the length and width of the player image.
+        //inputs the position of the character.
+        spriteBatch.draw(spriteFrames[4], position.x, position.y, 70*(1/70f), 100*(1/70f));   //sets the length and width of the player image. Divided by 70 to convert to units.
 
     }
     //update properties for player.
     public void update(float deltaTime){
-
+        //Adds one to the x position of the player, moving the position of the player along the x-axis.
+        position.x += deltaTime;
     }
 }
