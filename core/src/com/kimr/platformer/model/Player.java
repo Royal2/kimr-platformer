@@ -13,51 +13,26 @@ import com.badlogic.gdx.math.Vector2;
 public class Player {
     //Player position on map.
     public Vector2 position;
-    //Player texture.
-    public Texture spriteSheet;
-    //Stores our players (sprites).
-    public TextureRegion[] spriteFrames;    //one dimensional array.
-
     //Player animation.
     public Animation animation;
+
+    public Spritesheet spriteSheet;
+
+    public int width;
+    public int height;
 
     private float stateTime;
 
     public Player() {
         position = new Vector2(1, 2);    //Vector positions the player.
-        spriteSheet = new Texture(Gdx.files.internal("img/aliens.png"));    //Set textures as the alien images.
+        //Set width and height of player.
+        width = 70;
+        height = 100;
+        spriteSheet = new Spritesheet("img/aliens.png", width, height);
+        animation = spriteSheet.createAnimation(34, 35);
 
-        //splits the spriteSheet by width and height.
-        TextureRegion[][] spriteSheetFrames = TextureRegion.split(spriteSheet, 70, 100);    //two dimensional arrays, [rows] [columns].
 
-        //counter counts number of aliens.
-        int counter = 0;    //start at origin.
-        for(int row = 0; row < spriteSheetFrames.length; row++) {
-            for(int column = 0; column < spriteSheetFrames[row].length; column++) {
-                counter++;
-            }
-        }
 
-        //assigns counter into spriteFrames dimensional array.
-        spriteFrames = new TextureRegion[counter];
-        //set counter back to 0.
-        counter = 0;
-        //checks spriteSheet frames, then takes each row and stores it into row.
-        for(TextureRegion[] row : spriteSheetFrames) {
-            //stores each column(sprite) into row.
-            for(TextureRegion sprite : row) {
-                //assigns each sprite into spriteFrames.
-                spriteFrames[counter++] = sprite;
-            }
-        }
-
-        //Creating a new array to store our walking sprite animation.
-        TextureRegion[] animationFrames = new TextureRegion[2];
-        //Assigning sprite to animationFrames.
-        animationFrames[0] = spriteFrames[34];
-        animationFrames[1] = spriteFrames[35];
-        //Determining frame duration for animation.
-        animation = new Animation(.25f, animationFrames);
         //Initializing stateTime variable.
         stateTime = 0f;
 
@@ -65,7 +40,7 @@ public class Player {
     //draw spriteSheet for player.
     public void draw(Batch spriteBatch){
         //inputs the position of the character.
-        spriteBatch.draw(animation.getKeyFrame(stateTime, true), position.x, position.y, 70*(1/70f), 100*(1/70f));   //sets the length and width of the player image. Divided by 70 to convert to units.
+        spriteBatch.draw(animation.getKeyFrame(stateTime, true), position.x, position.y, width*(1/70f), height*(1/70f));   //sets the length and width of the player image. Divided by 70 to convert to units.
 
     }
     //update properties for player.
