@@ -10,8 +10,6 @@ public class Spritesheet {
     public Texture spriteSheet;
     //Stores our players (sprites).
     public TextureRegion[] spriteFrames;    //one dimensional array.
-    //Player animation.
-    public Animation animation;
 
     public Spritesheet(String pathToFile, int width, int height) {
         spriteSheet = new Texture(Gdx.files.internal(pathToFile));    //Set textures as the specified image.
@@ -41,15 +39,19 @@ public class Spritesheet {
         }
     }
 
-    public Animation createAnimation(int anim1, int anim2) {
-        //Creating a new array to store our walking sprite animation.
-        TextureRegion[] animationFrames = new TextureRegion[2];
-        //Assigning sprite to animationFrames.
-        animationFrames[0] = spriteFrames[anim1];
-        animationFrames[1] = spriteFrames[anim2];
+    public Animation createAnimation(int startFrame, int lastFrame, float animationSpeed) {
+        //counter gets the number of frames to use in the animation.
+        int counter = (lastFrame + 1) - startFrame;  //+1 to count for the zero in the array.
+
+        //Creating a new array to store our sprite animation.
+        TextureRegion[] animationFrames = new TextureRegion[counter];
+
+        //Creates animation, by getting its frames.
+        for(int index = lastFrame; index >= startFrame; index--){
+            animationFrames[--counter] = spriteFrames[index];  //"--" before "counter" decrements counter before accessing it.
+        }
+
         //Determining frame duration for animation.
-        animation = new Animation(.25f, animationFrames);
-        //returns animation variable.
-        return animation;
+        return new Animation(animationSpeed, animationFrames);
     }
 }
