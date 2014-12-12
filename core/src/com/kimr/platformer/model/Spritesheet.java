@@ -54,4 +54,19 @@ public class Spritesheet {
         //Determining frame duration for animation.
         return new Animation(animationSpeed, animationFrames);
     }
+
+    public Animation flipAnimation(Animation originalAnimation, boolean flipX, boolean flipY) {
+        //Gets frameCount from originalAnimation array length.
+        int frameCount = originalAnimation.getKeyFrames().length;
+        TextureRegion[] flippedFrames = new TextureRegion[frameCount];
+
+        //Creates flipped animation.
+        for(int index = 0; index < frameCount; index++){
+            flippedFrames[index] = originalAnimation.getKeyFrames()[index];
+            flippedFrames[index].flip(flipX, flipY);  //Flips frames across x-axis or y-axis.
+        }
+
+        //returns flipped animation.
+        return new Animation(originalAnimation.getFrameDuration(), flippedFrames);
+    }
 }
