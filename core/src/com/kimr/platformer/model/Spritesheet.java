@@ -62,7 +62,7 @@ public class Spritesheet {
 
         //Creates flipped animation.
         for(int index = 0; index < frameCount; index++){
-            flippedFrames[index] = originalAnimation.getKeyFrames()[index];
+            flippedFrames[index] = new TextureRegion(originalAnimation.getKeyFrames()[index]);  //Creates a new TextureRegion for flipped animations.
             flippedFrames[index].flip(flipX, flipY);  //Flips frames across x-axis or y-axis.
         }
 

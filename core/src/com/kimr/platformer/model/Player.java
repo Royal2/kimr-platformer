@@ -18,6 +18,8 @@ public class Player {
 
     public Spritesheet spriteSheet;
 
+    public String currentAnimation;
+
     public int width;
     public int height;
 
@@ -52,6 +54,9 @@ public class Player {
         animations.put("walkFlip", spriteSheet.flipAnimation(animations.get("walk"), true, false));
         //animation = spriteSheet.flipAnimation(animation, true, false);
 
+        //Animation Key (String).
+        currentAnimation = "walkFlip";
+
         //Initializing stateTime variable.
         stateTime = 0f;
 
@@ -59,7 +64,7 @@ public class Player {
     //draw spriteSheet for player.
     public void draw(Batch spriteBatch){
         //inputs the position of the character.
-        spriteBatch.draw(animations.get("walk").getKeyFrame(stateTime, true), position.x, position.y, width*(1/70f), height*(1/70f));   //sets the length and width of the player image. Divided by 70 to convert to units.
+        spriteBatch.draw(animations.get(currentAnimation).getKeyFrame(stateTime, true), position.x, position.y, width*(1/70f), height*(1/70f));   //sets the length and width of the player image. Divided by 70 to convert to units.
 
     }
     //update properties for player.
