@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 import com.kimr.platformer.model.Player;
 
 /**
@@ -22,10 +25,16 @@ public class GameScreen implements Screen {
     public Batch spriteBatch;
     public Player player;
 
+    public static World gameWorld;
+    private Box2DDebugRenderer debugRenderer;
+
     public GameScreen() {
         map = new TmxMapLoader().load("map/Level01.tmx");
         //adding map to renderer, renderer displays map in 2D, 1/70f defining number of units per pixels.
         renderer = new OrthogonalTiledMapRenderer(map, 1/70f);
+
+        gameWorld = new World(new Vector2(0, -9.8f), true);   //Vector2 for gravity.
+        debugRenderer = new Box2DDebugRenderer();   //Displays shapes.
 
         //store the width and height of the game screen into variables.
         float width = Gdx.graphics.getWidth();
@@ -66,6 +75,8 @@ public class GameScreen implements Screen {
         player.draw(spriteBatch);
         //ends spriteBatch.
         spriteBatch.end();
+        //renders gravity.
+        debugRenderer.render(gameWorld, camera.combined);
     }
 
     @Override

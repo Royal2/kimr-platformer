@@ -6,6 +6,11 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.kimr.platformer.view.GameScreen;
 
 import java.util.HashMap;
 
@@ -60,6 +65,24 @@ public class Player {
         //Initializing stateTime variable.
         stateTime = 0f;
 
+        //Properties of body.
+        BodyDef bodyDefinition = new BodyDef(); //Creating bodyDefinition.
+        bodyDefinition.type = BodyDef.BodyType.DynamicBody; //Defining body type.
+        bodyDefinition.position.set(position);  //Getting position of sprite on game screen, then sets to body.
+
+        Body playerBody = GameScreen.gameWorld.createBody(bodyDefinition);  //Creating body to game world.
+        playerBody.setUserData(this);   //sets user data.
+
+        //Setting shape of player body.
+        PolygonShape rectangleShape = new PolygonShape();   //Creating shape.
+        rectangleShape.setAsBox(width / 2f, height / 2f, new Vector2(width / 2f, height / 2f), 0f);  //Center of player body.
+
+        FixtureDef fixtureDefinition = new FixtureDef();
+        fixtureDefinition.shape = rectangleShape;   //Attatches shape to body.
+
+        playerBody.createFixture(fixtureDefinition);
+        rectangleShape.dispose();   //Deletes the shape.
+
     }
     //draw spriteSheet for player.
     public void draw(Batch spriteBatch){
@@ -70,7 +93,7 @@ public class Player {
     //update properties for player.
     public void update(float deltaTime){
         //Adds one to the x position of the player, moving the position of the player along the x-axis.
-        position.y += deltaTime;
+        //position.y += deltaTime;
         //Set stateTime to game time.
         stateTime += deltaTime;
     }
