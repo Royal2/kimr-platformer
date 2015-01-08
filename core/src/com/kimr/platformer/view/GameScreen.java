@@ -48,7 +48,7 @@ public class GameScreen implements Screen {
 
         //this enables us to draw 2D object onto screen.
         spriteBatch = renderer.getSpriteBatch();
-        player = new Player();
+        player = new Player(70, 100);
     }
 
     //render --> runs on every cpu tick.

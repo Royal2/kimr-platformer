@@ -25,21 +25,22 @@ public class Player {
 
     public String currentAnimation;
 
-    public int width;
-    public int height;
+    public float width;
+    public float height;
 
     private float stateTime;
     //Creates an animation table.
     private HashMap<String, Animation> animations;    //<Key, Value>
 
-    public Player() {
-        position = new Vector2(1, 2);    //Vector positions the player.
+    public Player( int width, int height) {
+        position = new Vector2(3, 2);    //Vector positions the player.
         //Initializing HashMap table.
         animations = new HashMap<String, Animation>();
 
         //Set width and height of player.
-        width = 70;
-        height = 100;
+        this.width = width * (1/70f);
+        this.height = height * (1/70f);
+
         spriteSheet = new Spritesheet("img/aliens.png", width, height);
         //animations.
         animations.put("stand", spriteSheet.createAnimation(33, 33, .25f));
@@ -75,7 +76,7 @@ public class Player {
 
         //Setting shape of player body.
         PolygonShape rectangleShape = new PolygonShape();   //Creating shape.
-        rectangleShape.setAsBox(width / 2f, height / 2f, new Vector2(width / 2f, height / 2f), 0f);  //Center of player body.
+        rectangleShape.setAsBox(this.width / 2f, this.height / 2f, new Vector2(this.width / 2f, this.height / 2f), 0f);  //Center of player body.
 
         FixtureDef fixtureDefinition = new FixtureDef();
         fixtureDefinition.shape = rectangleShape;   //Attatches shape to body.
@@ -87,7 +88,7 @@ public class Player {
     //draw spriteSheet for player.
     public void draw(Batch spriteBatch){
         //inputs the position of the character.
-        spriteBatch.draw(animations.get(currentAnimation).getKeyFrame(stateTime, true), position.x, position.y, width*(1/70f), height*(1/70f));   //sets the length and width of the player image. Divided by 70 to convert to units.
+        spriteBatch.draw(animations.get(currentAnimation).getKeyFrame(stateTime, true), position.x, position.y, width, height);   //sets the length and width of the player image. Divided by 70 to convert to units.
 
     }
     //update properties for player.
