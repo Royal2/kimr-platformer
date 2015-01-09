@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.kimr.platformer.controller.LevelController;
 import com.kimr.platformer.view.GameScreen;
 
 import java.util.HashMap;
@@ -71,7 +72,7 @@ public class Player {
         bodyDefinition.type = BodyDef.BodyType.DynamicBody; //Defining body type.
         bodyDefinition.position.set(position);  //Getting position of sprite on game screen, then sets to body.
 
-        Body playerBody = GameScreen.gameWorld.createBody(bodyDefinition);  //Creating body to game world.
+        Body playerBody = LevelController.gameWorld.createBody(bodyDefinition);  //Creating body to game world.
         playerBody.setUserData(this);   //sets user data.
 
         //Setting shape of player body.
