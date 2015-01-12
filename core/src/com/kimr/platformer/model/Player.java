@@ -39,8 +39,8 @@ public class Player {
         animations = new HashMap<String, Animation>();
 
         //Set width and height of player.
-        this.width = width * (1/70f);
-        this.height = height * (1/70f);
+        this.width = width * LevelController.UNIT_SCALE;
+        this.height = height * LevelController.UNIT_SCALE;
 
         spriteSheet = new Spritesheet("img/aliens.png", width, height);
         //animations.

@@ -26,6 +26,7 @@ public class GameScreen implements Screen {
         LevelController.initializeController();
         CameraController.initializeController();
         PlayerController.initializeController();
+
     }
 
     //render --> runs on every cpu tick.
@@ -45,6 +46,7 @@ public class GameScreen implements Screen {
         PlayerController.update(delta);
         //draws on game screen.
         LevelController.draw();
+
     }
 
     @Override
