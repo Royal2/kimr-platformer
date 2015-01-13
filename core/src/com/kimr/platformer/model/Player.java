@@ -1,48 +1,21 @@
 package com.kimr.platformer.model;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.kimr.platformer.controller.LevelController;
-import com.kimr.platformer.view.GameScreen;
-
-import java.util.HashMap;
 
 /**
  * Created by Student on 12/2/2014.
  */
-public class Player {
-    //Player position on map.
-    public Vector2 position;
+public class Player extends Sprite {
 
-    public Spritesheet spriteSheet;
+    public Player(Vector2 position, int width, int height) {
+        super(position, width, height);
 
-    public String currentAnimation;
-
-    public float width;
-    public float height;
-
-    private float stateTime;
-    //Creates an animation table.
-    private HashMap<String, Animation> animations;    //<Key, Value>
-
-    public Player( int width, int height) {
-        position = new Vector2(3, 2);    //Vector positions the player.
-        //Initializing HashMap table.
-        animations = new HashMap<String, Animation>();
-
-        //Set width and height of player.
-        this.width = width * LevelController.UNIT_SCALE;
-        this.height = height * LevelController.UNIT_SCALE;
-
-        spriteSheet = new Spritesheet("img/aliens.png", width, height);
         //animations.
         animations.put("stand", spriteSheet.createAnimation(33, 33, .25f));
         animations.put("climb", spriteSheet.createAnimation(34, 35, .25f));
@@ -60,12 +33,6 @@ public class Player {
         animations.put("swimFlip", spriteSheet.flipAnimation(animations.get("swim"), true, false));
         animations.put("walkFlip", spriteSheet.flipAnimation(animations.get("walk"), true, false));
         //animation = spriteSheet.flipAnimation(animation, true, false);
-
-        //Animation Key (String).
-        currentAnimation = "walkFlip";
-
-        //Initializing stateTime variable.
-        stateTime = 0f;
 
         //Properties of body.
         BodyDef bodyDefinition = new BodyDef(); //Creating bodyDefinition.
@@ -89,14 +56,15 @@ public class Player {
     //draw spriteSheet for player.
     public void draw(Batch spriteBatch){
         //inputs the position of the character.
-        spriteBatch.draw(animations.get(currentAnimation).getKeyFrame(stateTime, true), position.x, position.y, width, height);   //sets the length and width of the player image. Divided by 70 to convert to units.
-
+        //spriteBatch.draw(animations.get(currentAnimation).getKeyFrame(stateTime, true), position.x, position.y, width, height);   //sets the length and width of the player image. Divided by 70 to convert to units.
+        super.draw(spriteBatch);    //Calling a parent class.
     }
     //update properties for player.
     public void update(float deltaTime){
         //Adds one to the x position of the player, moving the position of the player along the x-axis.
         //position.y += deltaTime;
         //Set stateTime to game time.
-        stateTime += deltaTime;
+        //stateTime += deltaTime;
+        super.update(deltaTime);
     }
 }

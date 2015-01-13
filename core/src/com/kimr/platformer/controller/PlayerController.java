@@ -1,5 +1,6 @@
 package com.kimr.platformer.controller;
 
+import com.badlogic.gdx.math.Vector2;
 import com.kimr.platformer.model.Player;
 
 /**
@@ -9,7 +10,7 @@ public class PlayerController {
     public static Player player;
 
     public static void initializeController() {
-        player = new Player(70, 100);
+        player = new Player(new Vector2(3,3), 70, 100);
     }
 
     public static void update(float deltaTime) {
