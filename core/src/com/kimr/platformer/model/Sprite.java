@@ -3,6 +3,7 @@ package com.kimr.platformer.model;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.kimr.platformer.controller.LevelController;
 
 import java.util.HashMap;
@@ -11,6 +12,8 @@ import java.util.HashMap;
  * Created by Student on 1/13/2015.
  */
 public class Sprite {
+    //
+    public Body physicsBody;
     //position on map.
     public Vector2 position;
     //spriteSheet.

@@ -32,7 +32,7 @@ public class LevelController {
         //adding map to renderer, renderer displays map in 2D, 1/70f defining number of units per pixels.
         renderer = new OrthogonalTiledMapRenderer(Level.map, UNIT_SCALE);
 
-        gameWorld = new World(new Vector2(0, -9.8f), true);   //Vector2 for gravity.
+        gameWorld = new World(new Vector2(0, 0), true);   //Vector2 for gravity.
         worldBodies = new Array<Body>();    //Initializing worldBodies.
         debugRenderer = new Box2DDebugRenderer();   //Displays shapes.
 
@@ -71,8 +71,8 @@ public class LevelController {
 
         //Gets position of bodies in gameWorld and stores it into playerBody.
         for(Body body : worldBodies) {
-            Sprite playerBody = (Sprite)body.getUserData();
-            playerBody.position = body.getPosition();
+            Sprite spriteBody = (Sprite)body.getUserData();
+            spriteBody.position = body.getPosition();
         }
     }
 }
