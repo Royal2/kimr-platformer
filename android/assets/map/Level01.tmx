@@ -18,40 +18,24 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" name="collision" width="20" height="10">
-  <object x="0" y="280" width="70"/>
-  <object x="0" y="210" width="210" height="70"/>
-  <object x="210" y="280" width="70" height="70"/>
-  <object x="280" y="350" width="70" height="70"/>
-  <object name="ground" type="solid" x="0" y="210" width="210" height="70"/>
   <object name="ground" type="solid" x="210" y="280" width="70" height="70"/>
   <object name="ground" type="solid" x="280" y="350" width="70" height="70"/>
   <object name="ground" type="solid" x="560" y="630" width="140" height="70"/>
-  <object name="ground" type="slope" x="770" y="560">
-   <polygon points="0,0 70,70 70,0 0,0 70,0"/>
-  </object>
-  <object name="ground" type="slope" x="1260" y="630">
-   <polygon points="0,0 70,-70 0,-70"/>
-  </object>
   <object name="ground" type="solid" x="840" y="560" width="420" height="70"/>
   <object name="ground" type="solid" x="18" y="516" width="36" height="14"/>
-  <object x="160" y="590" width="34" height="8"/>
-  <object x="234" y="588" width="26" height="10"/>
-  <object x="302" y="588" width="28" height="10"/>
-  <object x="368" y="590" width="34" height="8"/>
-  <object x="442" y="590" width="30" height="10"/>
-  <object x="512" y="590" width="28" height="6"/>
+  <object name="ground" type="solid" x="160" y="590" width="34" height="8"/>
+  <object name="ground" type="solid" x="234" y="588" width="26" height="10"/>
+  <object name="ground" type="solid" x="302" y="588" width="28" height="10"/>
+  <object name="ground" type="solid" x="368" y="590" width="34" height="8"/>
+  <object name="ground" type="solid" x="442" y="590" width="30" height="10"/>
+  <object name="ground" type="solid" x="512" y="590" width="28" height="6"/>
   <object name="ground" type="solid" x="1122" y="282" width="210" height="38"/>
-  <object x="4" y="2" width="1184" height="36"/>
+  <object name="ground" type="solid" x="4" y="2" width="1184" height="36"/>
   <object name="ground" type="solid" x="2" y="664" width="1398" height="34"/>
   <object name="ground" type="solid" x="350" y="430" width="210" height="52"/>
   <object name="ground" type="solid" x="840" y="536" width="420" height="22"/>
-  <object name="ground" type="slope" x="1190" y="0">
-   <polygon points="0,0 70,70 70,0"/>
-  </object>
-  <object name="ground" type="slope" x="1260" y="70">
-   <polygon points="0,0 70,70 70,0"/>
-  </object>
   <object name="ground" type="solid" x="1260" y="0" width="140" height="70"/>
   <object name="ground" type="solid" x="1330" y="70" width="70" height="70"/>
+  <object name="ground" type="solid" x="0" y="210" width="210" height="70"/>
  </objectgroup>
 </map>

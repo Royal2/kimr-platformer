@@ -1,6 +1,8 @@
 package com.kimr.platformer.controller;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -9,9 +11,12 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.kimr.platformer.model.Bodies;
 import com.kimr.platformer.model.Level;
 import com.kimr.platformer.model.Player;
 import com.kimr.platformer.model.Sprite;
+
+import jdk.internal.dynalink.beans.StaticClass;
 
 /**
  * Created by Student on 1/9/2015.
@@ -33,12 +38,14 @@ public class LevelController {
         //adding map to renderer, renderer displays map in 2D, 1/70f defining number of units per pixels.
         renderer = new OrthogonalTiledMapRenderer(Level.map, UNIT_SCALE);
 
-        gameWorld = new World(new Vector2(0, 0), true);   //Vector2 for gravity.
+        gameWorld = new World(new Vector2(0, -10), true);   //Vector2 for gravity.
         worldBodies = new Array<Body>();    //Initializing worldBodies.
         debugRenderer = new Box2DDebugRenderer();   //Displays shapes.
 
         //this enables us to draw 2D object onto screen.
         spriteBatch = renderer.getSpriteBatch();
+        //creates bodies.
+        createLevelBodies();
     }
 
     public static void draw() {
@@ -75,7 +82,18 @@ public class LevelController {
         //Gets position of bodies in gameWorld and stores it into playerBody.
         for(Body body : worldBodies) {
             Sprite spriteBody = (Sprite)body.getUserData();
-            spriteBody.position = body.getPosition();
+            //checks if spriteBody is null.
+            if(spriteBody != null) {
+                spriteBody.position = body.getPosition();
+            }
+        }
+    }
+
+    private static void createLevelBodies() {
+        MapObjects mapObjects = level.getMapObjects(level.getMapLayer("collision"));
+
+        for(MapObject mapObject : mapObjects) {
+            Bodies.createBody(mapObject);
         }
     }
 }
