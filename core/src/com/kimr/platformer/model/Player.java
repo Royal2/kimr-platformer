@@ -13,8 +13,8 @@ import com.kimr.platformer.controller.LevelController;
  */
 public class Player extends Sprite {
 
-    public Player(Vector2 position, int width, int height) {
-        super(position, width, height);
+    public Player(Vector2 position, int width, int height, String sheetPath) {
+        super(position, width, height, sheetPath);
 
         //animations.
         animations.put("stand", spriteSheet.createAnimation(33, 33, .25f));
@@ -33,6 +33,9 @@ public class Player extends Sprite {
         animations.put("swimFlip", spriteSheet.flipAnimation(animations.get("swim"), true, false));
         animations.put("walkFlip", spriteSheet.flipAnimation(animations.get("walk"), true, false));
         //animation = spriteSheet.flipAnimation(animation, true, false);
+
+        //Animation Key (String).
+        currentAnimation = "walkFlip";
 
         //Properties of body.
         BodyDef bodyDefinition = new BodyDef(); //Creating bodyDefinition.

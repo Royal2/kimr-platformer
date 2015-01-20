@@ -9,10 +9,9 @@ import com.kimr.platformer.controller.LevelController;
 import java.util.HashMap;
 
 /**
- * Created by Student on 1/13/2015.
+ * Created by Student on 1/15/2015.
  */
-public class Sprite {
-    //
+public class EnemySprite {
     public Body physicsBody;
     //position on map.
     public Vector2 position;
@@ -28,31 +27,28 @@ public class Sprite {
     //Creates an animation table.
     protected HashMap<String, Animation> animations;    //<Key, Value>
 
-    public Sprite(Vector2 position, int width, int height, String sheetPath) {
-        this.position = position;    //Positions the player.
+    public EnemySprite(Vector2 position, int width, int height, String sheetPath) {
+        this.position = position;    //Positions the enemy.
         //Initializing HashMap table.
         animations = new HashMap<String, Animation>();
 
-        //Set width and height of player.
+        //Set width and height of enemy.
         this.width = width * LevelController.UNIT_SCALE;
         this.height = height * LevelController.UNIT_SCALE;
 
         //Initializing spriteSheet.
         spriteSheet = new Spritesheet(sheetPath, width, height);
+        spriteSheet = new Spritesheet(sheetPath, width, height);
         //Initializing stateTime variable.
         stateTime = 0f;
-    }
-    //draw spriteSheet for player.
-    public void draw(Batch spriteBatch){
-        //inputs the position of the character.
-        spriteBatch.draw(animations.get(currentAnimation).getKeyFrame(stateTime, true), position.x, position.y, width, height);   //sets the length and width of the player image. Divided by 70 to convert to units.
 
     }
-    //update properties for player.
+    public void draw(Batch spriteBatch){
+        //inputs the position of the character.
+        spriteBatch.draw(animations.get(currentAnimation).getKeyFrame(stateTime, true), position.x, position.y, width, height);   //sets the length and width of the enemy image.
+    }
+    //update properties for enemy.
     public void update(float deltaTime){
-        //Adds one to the x position of the player, moving the position of the player along the x-axis.
-        //position.y += deltaTime;
-        //Set stateTime to game time.
         stateTime += deltaTime;
     }
 }

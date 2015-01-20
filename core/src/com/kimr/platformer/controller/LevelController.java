@@ -18,6 +18,7 @@ import com.kimr.platformer.model.Sprite;
  */
 public class LevelController {
     public static final float UNIT_SCALE = 1/70f;
+    //public static final float ENEMY_UNIT_SCALE = 1/51f;
 
     public static Level level;
     public static OrthogonalTiledMapRenderer renderer;
@@ -45,6 +46,8 @@ public class LevelController {
         spriteBatch.begin();
         //uses spriteBatch object to draw the player.
         PlayerController.player.draw(spriteBatch);
+        //uses spriteBatch object to draw the player.
+        EnemyController.enemy.draw(spriteBatch);
         //ends spriteBatch.
         spriteBatch.end();
 
