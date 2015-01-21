@@ -1,6 +1,7 @@
 package com.kimr.platformer.model;
 
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -41,6 +42,36 @@ public class Bodies {
             //Attatch shape to physics body.
             physicsBody.createFixture(fixtureDefinition);
             rectangleShape.dispose();
+
+        }
+        //Checks if body type is Slope.
+        else if(bodyType.equalsIgnoreCase("slope")) {
+            PolygonMapObject polygonObject = (PolygonMapObject)mapObject;
+            //Create bodyDefinition.
+            BodyDef bodyDefinition = new BodyDef();
+            //Set type.
+            bodyDefinition.type = BodyDef.BodyType.StaticBody;  //StaticBody stays in place.
+            //Set position.
+            bodyDefinition.position.set(polygonObject.getPolygon().getX() * LevelController.UNIT_SCALE,
+                    polygonObject.getPolygon().getY() * LevelController.UNIT_SCALE);
+            //Create body.
+            Body physicsBody = LevelController.gameWorld.createBody(bodyDefinition);
+            //Create shape.
+            PolygonShape polygonShape = new PolygonShape();
+            //Create rectangle.
+            polygonShape.set(polygonObject.getPolygon().getVertices());
+            float[] transformedVertices = new float[polygonObject.getPolygon().getVertices().length];
+            //Gets all our vertices, scales, then stores them into transformedVertices.
+            for(int index = 0; index < transformedVertices.length; index++) {
+                transformedVertices[index] = polygonObject.getPolygon().getVertices()[index] * LevelController.UNIT_SCALE;
+            }
+            polygonShape.set(transformedVertices);
+            //Create fixtureDefinition.
+            FixtureDef fixtureDefinition = new FixtureDef();
+            fixtureDefinition.shape = polygonShape;
+            //Attatch shape to physics body.
+            physicsBody.createFixture(fixtureDefinition);
+            polygonShape.dispose();
 
         }
     }
