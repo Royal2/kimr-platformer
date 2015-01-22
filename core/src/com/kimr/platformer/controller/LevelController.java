@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.kimr.platformer.model.Bodies;
+import com.kimr.platformer.model.InputControl;
 import com.kimr.platformer.model.Level;
 import com.kimr.platformer.model.Player;
 import com.kimr.platformer.model.Sprite;
@@ -57,6 +58,8 @@ public class LevelController {
         EnemyController.enemy.draw(spriteBatch);
         //ends spriteBatch.
         spriteBatch.end();
+
+        InputController.draw(spriteBatch);
 
         //renders game world.
         debugRenderer.render(gameWorld, CameraController.camera.combined);

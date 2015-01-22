@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.kimr.platformer.controller.CameraController;
 import com.kimr.platformer.controller.EnemyController;
+import com.kimr.platformer.controller.InputController;
 import com.kimr.platformer.controller.LevelController;
 import com.kimr.platformer.controller.PlayerController;
 import com.kimr.platformer.model.Player;
@@ -28,6 +29,7 @@ public class GameScreen implements Screen {
         CameraController.initializeController();
         PlayerController.initializeController();
         EnemyController.initializeController();
+        InputController.initializeController();
 
     }
 
