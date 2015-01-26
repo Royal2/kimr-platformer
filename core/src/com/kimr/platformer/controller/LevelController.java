@@ -24,7 +24,6 @@ import jdk.internal.dynalink.beans.StaticClass;
  */
 public class LevelController {
     public static final float UNIT_SCALE = 1/70f;
-    //public static final float ENEMY_UNIT_SCALE = 1/51f;
 
     public static Level level;
     public static OrthogonalTiledMapRenderer renderer;
@@ -35,7 +34,7 @@ public class LevelController {
     private static Box2DDebugRenderer debugRenderer;
 
     public static void initializeController() {
-        level = new Level("map/level01.tmx");
+        level = new Level("map/Level01.tmx");
         //adding map to renderer, renderer displays map in 2D, 1/70f defining number of units per pixels.
         renderer = new OrthogonalTiledMapRenderer(Level.map, UNIT_SCALE);
 
@@ -50,6 +49,8 @@ public class LevelController {
     }
 
     public static void draw() {
+        //draws original camera.
+        spriteBatch.setProjectionMatrix(CameraController.camera.combined);
         //calls on spriteBatch to begin drawing.
         spriteBatch.begin();
         //uses spriteBatch object to draw the player.
@@ -58,7 +59,8 @@ public class LevelController {
         EnemyController.enemy.draw(spriteBatch);
         //ends spriteBatch.
         spriteBatch.end();
-
+        //draws inputCamera.
+        spriteBatch.setProjectionMatrix(CameraController.inputCamera.combined);
         InputController.draw(spriteBatch);
 
         //renders game world.

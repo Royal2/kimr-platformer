@@ -11,11 +11,16 @@ import com.kimr.platformer.model.Player;
 public class PlayerController {
     public static Player player;
 
+    public static String movementAction;
+    public static String specialAction;
+
     private static final float VELOCITY = 1f;
     private static final float MAX_VELOCITY = 5;
 
     public static void initializeController() {
         player = new Player(new Vector2(3,3), 70, 100, "img/aliens.png");
+        movementAction = "";
+        specialAction = "";
     }
 
     public static void update(float deltaTime) {
@@ -38,11 +43,12 @@ public class PlayerController {
 
         //Checks which key has been pressed.
         //Right Key Binding.
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        if(movementAction.equalsIgnoreCase("right")) {
             player.physicsBody.applyLinearImpulse(VELOCITY, 0f, position.x, position.y, true);
         }
         //Left Key Binding.
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+        //if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+        if(movementAction.equalsIgnoreCase("left")) {
             player.physicsBody.applyLinearImpulse(-VELOCITY, 0f, position.x, position.y, true);
         }
     }
