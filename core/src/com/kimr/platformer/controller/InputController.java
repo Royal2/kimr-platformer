@@ -13,18 +13,22 @@ import com.kimr.platformer.model.Spritesheet;
 public class InputController {
     private static Spritesheet spriteSheet;
     private static InputControl left;
-
-    static float splitScreen;
+    private static InputControl right;
 
     public static void initializeController() {
         spriteSheet = new Spritesheet("img/touch-controls.png", 80, 80);    // width_scale = 480/6, height_scale = 240/3
+        //left.
         left = new InputControl(new Vector2(0, 0),spriteSheet.spriteFrames[0], "left");
+        //right
+        right = new InputControl(new Vector2(13, 0),spriteSheet.spriteFrames[1], "right");
+
         Gdx.input.setInputProcessor(createInputAdapter());
     }
 
     public static void draw(Batch spriteBatch) {
         spriteBatch.begin();
         left.draw(spriteBatch);
+        right.draw(spriteBatch);
         spriteBatch.end();
     }
 
@@ -34,16 +38,12 @@ public class InputController {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 //System.out.println("Touch Down");
 
-                splitScreen = (CameraController.inputCamera.viewportWidth / 2f);
-
-                if(pointer == (screenX - splitScreen)) {
-                    PlayerController.movementAction = "right";
-
-                }
-                else {
+                if(left.getBoundingBox().contains(screenX, Gdx.graphics.getHeight() - screenY)) {
                     PlayerController.movementAction = "left";
                 }
-
+                if(left.getBoundingBox().contains(Gdx.graphics.getWidth() - screenX, Gdx.graphics.getHeight() - screenY)) {
+                    PlayerController.movementAction = "right";
+                }
                 return true;
             }
 

@@ -2,7 +2,9 @@ package com.kimr.platformer.model;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.kimr.platformer.controller.CameraController;
 import com.kimr.platformer.controller.LevelController;
 
 /**
@@ -29,5 +31,11 @@ public class InputControl {
     public void draw(Batch spriteBatch) {
         //draws textureRegion onto screen.
         spriteBatch.draw(textureRegion, position.x, position.y, width * LevelController.UNIT_SCALE, height * LevelController.UNIT_SCALE);
+    }
+
+    public Rectangle getBoundingBox() {
+        return new Rectangle(position.x / LevelController.UNIT_SCALE * CameraController.widthScale, position.y / LevelController.UNIT_SCALE * CameraController.heightScale,
+                width * CameraController.widthScale, height * CameraController.heightScale);
+
     }
 }

@@ -10,6 +10,9 @@ public class CameraController {
     public static OrthographicCamera camera;
     public static OrthographicCamera inputCamera;
 
+    public static float widthScale;
+    public static float heightScale;
+
     public static void initializeController() {
         //store the width and height of the game screen into variables.
         float width = Gdx.graphics.getWidth();
@@ -49,5 +52,8 @@ public class CameraController {
         inputCamera.position.set(inputCamera.viewportWidth / 2f, inputCamera.viewportHeight / 2f, 0);
         //updates inputCamera to reflect the new changes.
         inputCamera.update();
+        //getting scale of camera.
+        widthScale = width / inputCamera.viewportWidth * LevelController.UNIT_SCALE;
+        heightScale = height / inputCamera.viewportHeight * LevelController.UNIT_SCALE;
     }
 }
