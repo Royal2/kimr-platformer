@@ -20,34 +20,19 @@
  <objectgroup color="#ff0000" name="collision" width="20" height="10">
   <object name="ground" type="solid" x="210" y="280" width="70" height="70"/>
   <object name="ground" type="solid" x="280" y="350" width="70" height="70"/>
-  <object name="ground" type="solid" x="560" y="630" width="140" height="70"/>
-  <object name="ground" type="solid" x="840" y="560" width="420" height="70"/>
   <object name="ground" type="solid" x="18" y="516" width="36" height="14"/>
-  <object name="ground" type="solid" x="160" y="590" width="34" height="8"/>
-  <object name="ground" type="solid" x="234" y="588" width="26" height="10"/>
-  <object name="ground" type="solid" x="302" y="588" width="28" height="10"/>
-  <object name="ground" type="solid" x="368" y="590" width="34" height="8"/>
-  <object name="ground" type="solid" x="442" y="590" width="30" height="10"/>
-  <object name="ground" type="solid" x="512" y="590" width="28" height="6"/>
   <object name="ground" type="solid" x="1122" y="282" width="210" height="38"/>
-  <object name="ground" type="solid" x="4" y="2" width="1184" height="36"/>
-  <object name="ground" type="solid" x="2" y="664" width="1398" height="34"/>
   <object name="ground" type="solid" x="350" y="430" width="210" height="52"/>
-  <object name="ground" type="solid" x="840" y="536" width="420" height="22"/>
-  <object name="ground" type="solid" x="1260" y="0" width="140" height="70"/>
-  <object name="ground" type="solid" x="1330" y="70" width="70" height="70"/>
   <object name="ground" type="solid" x="0" y="210" width="210" height="70"/>
-  <object name="ground" type="slope" x="840" y="630">
-   <polygon points="0,0 -70,-70 0,-70"/>
+  <object name="ground" type="ground" x="770" y="560">
+   <polyline points="0,0 70,0 70,-24 492,-24 490,-2 560,0 562,18 518,66 514,70 46,68 6,26 0,24 -2,0"/>
   </object>
-  <object name="ground" type="slope" x="1190" y="0">
-   <polygon points="0,0 70,70 70,0"/>
+  <object name="ground" type="solid" x="158" y="588" width="384" height="8"/>
+  <object name="ground" type="ground" x="1396" y="2">
+   <polyline points="0,0 0,136 -60,138 -204,0 -204,36 -1392,38 -1394,-2"/>
   </object>
-  <object name="ground" type="slope" x="1260" y="70">
-   <polygon points="0,0 70,70 70,0"/>
-  </object>
-  <object name="ground" type="slope" x="1260" y="630">
-   <polygon points="0,0 70,-70 0,-70"/>
+  <object name="ground" type="ground" x="0" y="694">
+   <polyline points="0,0 2,-32 558,-30 562,-64 698,-62 698,-28 1400,-28 1402,-4 1402,6"/>
   </object>
  </objectgroup>
 </map>

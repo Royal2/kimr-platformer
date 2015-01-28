@@ -1,6 +1,7 @@
 package com.kimr.platformer.controller;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
@@ -49,6 +50,8 @@ public class InputController {
 
     private static InputAdapter createInputAdapter() {
         return new InputAdapter() {
+
+            //Touch Controls.
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 //System.out.println("Touch Down");
@@ -64,7 +67,7 @@ public class InputController {
                             PlayerController.movementAction = "left";
                         }
                         else if(inputControl.action.equalsIgnoreCase("jump")) {
-                            PlayerController.movementAction = "jump";
+                            PlayerController.specialAction = "jump";
                         }
                     }
                     //if (inputControl.getBoundingBox().contains(Gdx.graphics.getWidth() - screenX, screenY)) {
@@ -78,6 +81,7 @@ public class InputController {
             public boolean touchUp(int screenX, int screenY, int pointer, int button) {
                 //System.out.println("Touch Up");
                 //PlayerController.movementAction = "left";
+
                 screenY = Gdx.graphics.getHeight() - screenY;
                 for(InputControl inputControl : inputControls) {
                     if (inputControl.getBoundingBox().contains(screenX, screenY)) {
@@ -89,11 +93,40 @@ public class InputController {
                             PlayerController.movementAction = "";
                         }
                         else if(inputControl.action.equalsIgnoreCase("jump")) {
-                            PlayerController.movementAction = "";
+                            PlayerController.specialAction = "";
                         }
                     }
                 }
                 return true;
+            }
+
+            //Keyboard Controls.
+            @Override
+            public boolean keyDown(int keycode) {
+                if(keycode == Input.Keys.RIGHT) {
+                    PlayerController.movementAction = "right";
+                }
+                else if(keycode == Input.Keys.LEFT) {
+                    PlayerController.movementAction = "left";
+                }
+                if(keycode == Input.Keys.UP) {
+                    PlayerController.specialAction = "jump";
+                }
+                return true;
+            }
+
+            @Override
+            public boolean keyUp(int keycode) {
+                if(keycode == Input.Keys.RIGHT) {
+                    PlayerController.movementAction = "";
+                }
+                else if(keycode == Input.Keys.LEFT) {
+                    PlayerController.movementAction = "";
+                }
+                if(keycode == Input.Keys.UP) {
+                    PlayerController.specialAction = "";
+                }
+                    return true;
             }
         };
     }

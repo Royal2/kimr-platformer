@@ -52,8 +52,8 @@ public class PlayerController {
             player.physicsBody.applyLinearImpulse(-VELOCITY, 0f, position.x, position.y, true);
         }
         //Jump Key Binding.
-        if(movementAction.equalsIgnoreCase("jump")) {
-            player.physicsBody.applyLinearImpulse(0f, VELOCITY, position.x, position.y, true);
+        if(specialAction.equalsIgnoreCase("jump")) {
+            player.physicsBody.applyLinearImpulse(0f, 1f, position.x, position.y, true);
         }
     }
 }
