@@ -35,4 +35,8 @@
    <polyline points="0,0 2,-32 558,-30 562,-64 698,-62 698,-28 1400,-28 1402,-4 1402,6"/>
   </object>
  </objectgroup>
+ <objectgroup name="blocks" width="20" height="10">
+  <object name="block" type="block" x="980" y="420" width="70" height="70"/>
+  <object name="block" type="block" x="980" y="350" width="70" height="70"/>
+ </objectgroup>
 </map>

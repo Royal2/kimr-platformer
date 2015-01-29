@@ -100,5 +100,11 @@ public class LevelController {
         for(MapObject mapObject : mapObjects) {
             Bodies.createBody(mapObject);
         }
+
+        MapObjects blockObjects = level.getMapObjects(level.getMapLayer("blocks"));
+
+        for(MapObject mapObject : blockObjects) {
+            Bodies.createBody(mapObject);
+        }
     }
 }
