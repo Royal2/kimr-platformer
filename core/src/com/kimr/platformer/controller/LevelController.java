@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.kimr.platformer.model.Bodies;
+import com.kimr.platformer.model.CollisionListener;
 import com.kimr.platformer.model.InputControl;
 import com.kimr.platformer.model.Level;
 import com.kimr.platformer.model.Player;
@@ -43,6 +44,7 @@ public class LevelController {
         renderer = new OrthogonalTiledMapRenderer(Level.map, UNIT_SCALE);
 
         gameWorld = new World(new Vector2(0, -10), true);   //Vector2 for gravity.
+        gameWorld.setContactListener(new CollisionListener());  //Initializing CollisionListener.
         worldBodies = new Array<Body>();    //Initializing worldBodies.
         debugRenderer = new Box2DDebugRenderer();   //Displays shapes.
 

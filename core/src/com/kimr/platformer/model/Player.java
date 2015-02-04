@@ -8,6 +8,8 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.kimr.platformer.controller.LevelController;
 
+import java.awt.Polygon;
+
 /**
  * Created by Student on 12/2/2014.
  */
@@ -51,13 +53,23 @@ public class Player extends Sprite {
         PolygonShape rectangleShape = new PolygonShape();   //Creating shape.
         rectangleShape.setAsBox(this.width / 2f, this.height / 2f, new Vector2(this.width / 2f, this.height / 2f), 0f);  //Center of player body.
 
+        PolygonShape sensorShape = new PolygonShape();
+        sensorShape.setAsBox(this.width / 2.2f, this.height / 32f, new Vector2(this.width / 2f, 0f), 0f);
+
         FixtureDef fixtureDefinition = new FixtureDef();
         fixtureDefinition.shape = rectangleShape;   //Attatches shape to body.
+
+        FixtureDef fixtureDefinitionSensor = new FixtureDef();
+        fixtureDefinitionSensor.shape = sensorShape;
+        fixtureDefinitionSensor.isSensor = true;
+
         //Set density.
         fixtureDefinition.density = 0.5f;
 
         physicsBody.createFixture(fixtureDefinition);
+        physicsBody.createFixture(fixtureDefinitionSensor);
         rectangleShape.dispose();   //Deletes the shape.
+        sensorShape.dispose();
 
     }
     //draw spriteSheet for player.
