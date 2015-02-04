@@ -16,6 +16,8 @@ import com.kimr.platformer.model.InputControl;
 import com.kimr.platformer.model.Level;
 import com.kimr.platformer.model.Player;
 import com.kimr.platformer.model.Sprite;
+import com.kimr.platformer.model.Spritesheet;
+
 
 import jdk.internal.dynalink.beans.StaticClass;
 
@@ -33,6 +35,8 @@ public class LevelController {
     private static Array<Body> worldBodies;
     private static Box2DDebugRenderer debugRenderer;
 
+    //public static Spritesheet spriteSheet;
+
     public static void initializeController() {
         level = new Level("map/Level01.tmx");
         //adding map to renderer, renderer displays map in 2D, 1/70f defining number of units per pixels.
@@ -42,10 +46,14 @@ public class LevelController {
         worldBodies = new Array<Body>();    //Initializing worldBodies.
         debugRenderer = new Box2DDebugRenderer();   //Displays shapes.
 
+        //spriteSheet = new Spritesheet("img/background-tiles.png", 70, 70);
+
+
         //this enables us to draw 2D object onto screen.
         spriteBatch = renderer.getSpriteBatch();
         //creates bodies.
         createLevelBodies();
+
     }
 
     public static void draw() {

@@ -35,7 +35,7 @@ public class Player extends Sprite {
         //animation = spriteSheet.flipAnimation(animation, true, false);
 
         //Animation Key (String).
-        currentAnimation = "walkFlip";
+        currentAnimation = "walk";
 
         //Properties of body.
         BodyDef bodyDefinition = new BodyDef(); //Creating bodyDefinition.

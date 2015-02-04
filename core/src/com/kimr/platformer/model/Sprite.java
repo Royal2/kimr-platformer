@@ -19,7 +19,9 @@ public class Sprite {
     //spriteSheet.
     public Spritesheet spriteSheet;
     //currentAnimation.
-    protected String currentAnimation;
+    public String currentAnimation;
+    //player's initial direction.
+    public String direction;
 
     public float width;
     public float height;
@@ -41,6 +43,7 @@ public class Sprite {
         spriteSheet = new Spritesheet(sheetPath, width, height);
         //Initializing stateTime variable.
         stateTime = 0f;
+        direction = "right";
     }
     //draw spriteSheet for player.
     public void draw(Batch spriteBatch){

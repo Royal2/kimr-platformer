@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.kimr.platformer.controller.LevelController;
 
+
 /**
  * Created by Student on 1/20/2015.
  */
@@ -120,6 +121,11 @@ public class Bodies {
                     rectangleObject.getRectangle().y * LevelController.UNIT_SCALE);
             //Create body.
             Body physicsBody = LevelController.gameWorld.createBody(bodyDefinition);
+
+            //physicsBody.setUserData(LevelController.spriteSheet);   //sets user data.
+            //Sets fixed rotation.
+            //physicsBody.setFixedRotation(true);
+
             //Create shape.
             PolygonShape rectangleShape = new PolygonShape();
             //Create rectangle.
