@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.kimr.platformer.model.Player;
+import com.sun.media.jfxmedia.events.PlayerStateEvent;
 
 /**
  * Created by Student on 1/9/2015.
@@ -13,6 +14,8 @@ public class PlayerController {
 
     public static String movementAction;
     public static String specialAction;
+
+    public static boolean grounded;
 
     private enum State {
         Idle, Walk, Jump, JumpFlip;
@@ -60,11 +63,12 @@ public class PlayerController {
             player.direction = "left";
         }
         //Jump Key Binding.
-        if(specialAction.equalsIgnoreCase("jump")) {
-            player.physicsBody.applyLinearImpulse(0f, 1f, position.x, position.y, true);
+        if(specialAction.equalsIgnoreCase("jump") && PlayerController.grounded == true) {
+            player.physicsBody.applyLinearImpulse(0f, 4f, position.x, position.y, true);
             player.direction = "jump";
+            grounded = false;
         }
-
+/*
         if (Math.abs(velocity.y) > 0) {
             if(Math.abs(velocity.x) > 0) {
                 playerState = State.Jump;
@@ -73,11 +77,12 @@ public class PlayerController {
                 playerState = State.JumpFlip;
             }
         }
-        else if (Math.abs(velocity.x) > 0) {
-            playerState = State.Walk;
+*/
+        if (Math.abs(velocity.x) > 0) {
+           playerState = State.Walk;
         }
         else {
-            playerState = State.Idle;
+           playerState = State.Idle;
         }
         setCurrentAnimation();
     }
@@ -89,33 +94,14 @@ public class PlayerController {
         if (player.direction.equals("left")) {
             setLeftAnimation();
         }
-        if (player.direction.equals("jump")) {
-            setJumpAnimation();
-        }
-        if (player.direction.equals("jumpFlip")) {
-            setJumpFlipAnimation();
-        }
+    }
 
-    }
-    private static void setJumpAnimation() {
-        if (playerState == State.Jump) {
-            player.currentAnimation = "jump";
-        }
-        else if (playerState == State.Idle) {
-            player.currentAnimation = "idle";
-        }
-    }
-    private static void setJumpFlipAnimation() {
-        if (playerState == State.JumpFlip) {
-            player.currentAnimation = "jumpFlip";
-        }
-        else if (playerState == State.Idle) {
-            player.currentAnimation = "idleFlip";
-        }
-    }
     private static void setRightAnimation() {
         if (playerState == State.Walk) {
             player.currentAnimation = "walk";
+        }
+        else if (playerState == State.Jump) {
+            player.currentAnimation = "jump";
         }
         else if (playerState == State.Idle) {
             player.currentAnimation = "idle";
@@ -124,6 +110,9 @@ public class PlayerController {
     private static void setLeftAnimation() {
         if (playerState == State.Walk) {
             player.currentAnimation = "walkFlip";
+        }
+        else if (playerState == State.JumpFlip) {
+            player.currentAnimation = "jumpFlip";
         }
         else if (playerState == State.Idle) {
             player.currentAnimation = "idleFlip";
