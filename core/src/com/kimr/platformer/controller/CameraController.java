@@ -2,6 +2,7 @@ package com.kimr.platformer.controller;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.MathUtils;
 
 /**
  * Created by Student on 1/9/2015.
@@ -38,9 +39,11 @@ public class CameraController {
 
     public static void resize(int width, int height) {
         //resize window width to display 14 units.
-        camera.viewportWidth = 14f;
+        //camera.viewportWidth = 14f;
+        camera.viewportWidth = MathUtils.clamp(PlayerController.player.position.x, widthScale / 2f, width - widthScale / 2f);
         //resize window height to display to 14 units.
-        camera.viewportHeight = 14f * height / width;   //aspect ratio.
+        //camera.viewportHeight = 14f * height / width;   //aspect ratio.
+        camera.viewportHeight = MathUtils.clamp(PlayerController.player.position.y, heightScale / 2f, height - heightScale / 2f);
         //updates camera to reflect the new changes.
         camera.update();
 
@@ -55,5 +58,7 @@ public class CameraController {
         //getting scale of camera.
         widthScale = width / inputCamera.viewportWidth * LevelController.UNIT_SCALE;
         heightScale = height / inputCamera.viewportHeight * LevelController.UNIT_SCALE;
+
+
     }
 }
