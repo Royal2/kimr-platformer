@@ -65,7 +65,6 @@ public class PlayerController {
         //Jump Key Binding.
         if(specialAction.equalsIgnoreCase("jump") && PlayerController.grounded == true) {
             player.physicsBody.applyLinearImpulse(0f, 4f, position.x, position.y, true);
-            player.direction = "jump";
             grounded = false;
         }
 /*
@@ -79,10 +78,27 @@ public class PlayerController {
         }
 */
         if (Math.abs(velocity.x) > 0) {
-           playerState = State.Walk;
+            if (velocity.y > 0 || grounded == false) {
+                if (velocity.x > 0) {
+                    player.direction = "right";
+                    playerState = State.Jump;
+                }
+                else if (velocity.x < 0) {
+                    player.direction = "left";
+                    playerState = State.JumpFlip;
+                }
+            }
+            else {
+                playerState = State.Walk;
+            }
         }
         else {
-           playerState = State.Idle;
+            if (velocity.y > 0 || grounded ==false) {
+                playerState = State.Jump;
+            }
+            else {
+                playerState = State.Idle;
+            }
         }
         setCurrentAnimation();
     }

@@ -14,6 +14,9 @@ public class CameraController {
     public static float widthScale;
     public static float heightScale;
 
+    private static float w;
+    private static float h;
+
     public static void initializeController() {
         //store the width and height of the game screen into variables.
         float width = Gdx.graphics.getWidth();
@@ -39,11 +42,13 @@ public class CameraController {
 
     public static void resize(int width, int height) {
         //resize window width to display 14 units.
-        //camera.viewportWidth = 14f;
-        camera.viewportWidth = MathUtils.clamp(PlayerController.player.position.x, widthScale / 2f, width - widthScale / 2f);
+        camera.viewportWidth = 14f;
         //resize window height to display to 14 units.
-        //camera.viewportHeight = 14f * height / width;   //aspect ratio.
-        camera.viewportHeight = MathUtils.clamp(PlayerController.player.position.y, heightScale / 2f, height - heightScale / 2f);
+        camera.viewportHeight = 14f * height / width;   //aspect ratio.
+
+        //w = MathUtils.clamp(PlayerController.player.position.x, widthScale / 2f, width - widthScale / 2f);
+        //h = MathUtils.clamp(PlayerController.player.position.y, heightScale / 2f, height - heightScale / 2f);
+
         //updates camera to reflect the new changes.
         camera.update();
 
