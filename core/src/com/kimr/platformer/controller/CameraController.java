@@ -14,9 +14,6 @@ public class CameraController {
     public static float widthScale;
     public static float heightScale;
 
-    private static float w;
-    private static float h;
-
     public static void initializeController() {
         //store the width and height of the game screen into variables.
         float width = Gdx.graphics.getWidth();
@@ -36,6 +33,11 @@ public class CameraController {
     public static void update() {
         //updates camera to position onto player.
         camera.position.set(PlayerController.player.position.x, PlayerController.player.position.y,0);
+        //clamp(float value, float min, float max)
+        float width = Gdx.graphics.getWidth();
+        float height = Gdx.graphics.getHeight();
+        camera.position.x = MathUtils.clamp(PlayerController.player.position.x, camera.viewportWidth / 2f, width);
+        camera.position.y = MathUtils.clamp(PlayerController.player.position.y, camera.viewportHeight / 2f, height);
         //updates camera if it moves.
         camera.update();
     }
@@ -45,10 +47,6 @@ public class CameraController {
         camera.viewportWidth = 14f;
         //resize window height to display to 14 units.
         camera.viewportHeight = 14f * height / width;   //aspect ratio.
-
-        //w = MathUtils.clamp(PlayerController.player.position.x, widthScale / 2f, width - widthScale / 2f);
-        //h = MathUtils.clamp(PlayerController.player.position.y, heightScale / 2f, height - heightScale / 2f);
-
         //updates camera to reflect the new changes.
         camera.update();
 
@@ -63,7 +61,6 @@ public class CameraController {
         //getting scale of camera.
         widthScale = width / inputCamera.viewportWidth * LevelController.UNIT_SCALE;
         heightScale = height / inputCamera.viewportHeight * LevelController.UNIT_SCALE;
-
 
     }
 }

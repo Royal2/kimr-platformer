@@ -38,5 +38,11 @@
  <objectgroup name="blocks" width="20" height="10">
   <object name="block" type="block" x="980" y="420" width="70" height="70"/>
   <object name="block" type="block" x="980" y="350" width="70" height="70"/>
+  <object name="ground" type="ground" x="1400" y="0">
+   <polyline points="0,0 0,700"/>
+  </object>
+  <object name="ground" type="ground" x="0" y="0">
+   <polyline points="0,0 0,700"/>
+  </object>
  </objectgroup>
 </map>

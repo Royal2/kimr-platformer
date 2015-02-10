@@ -64,6 +64,11 @@ public class PlayerController {
         }
         //Jump Key Binding.
         if(specialAction.equalsIgnoreCase("jump") && PlayerController.grounded == true) {
+            //set y velocity back down to zero.
+            if(Math.abs(velocity.y) > MAX_VELOCITY) {
+                velocity.y = 0;
+                player.physicsBody.setLinearVelocity(velocity.x, velocity.y);
+            }
             player.physicsBody.applyLinearImpulse(0f, 4f, position.x, position.y, true);
             grounded = false;
         }
