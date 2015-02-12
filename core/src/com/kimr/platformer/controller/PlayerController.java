@@ -18,9 +18,10 @@ public class PlayerController {
     public static boolean grounded;
 
     private enum State {
-        Idle, Walk, Jump, JumpFlip;
+        Idle, Walk, Jump, JumpFlip, Duck;
     }
     private static State playerState;
+    private static State specialPlayerState;
 
     private static final float VELOCITY = 1f;
     private static final float MAX_VELOCITY = 5;
@@ -62,14 +63,21 @@ public class PlayerController {
             player.physicsBody.applyLinearImpulse(-VELOCITY, 0f, position.x, position.y, true);
             player.direction = "left";
         }
-        //Jump Key Binding.
+        //Up Key Binding.
         if(specialAction.equalsIgnoreCase("jump") && PlayerController.grounded == true) {
             //set y velocity back down to zero.
-            if(Math.abs(velocity.y) > MAX_VELOCITY) {
+            if(Math.abs(velocity.y) > 1) {
                 velocity.y = 0;
                 player.physicsBody.setLinearVelocity(velocity.x, velocity.y);
             }
             player.physicsBody.applyLinearImpulse(0f, 4f, position.x, position.y, true);
+            grounded = false;
+        }
+        //Down Key Binding.
+        if(movementAction.equalsIgnoreCase("down") && PlayerController.grounded == true) {
+            player.physicsBody.applyLinearImpulse(0f, 0f, position.x, position.y, true);
+            specialPlayerState = State.Duck;
+            player.direction = "right";
             grounded = false;
         }
 /*
@@ -98,8 +106,11 @@ public class PlayerController {
             }
         }
         else {
-            if (velocity.y > 0 || grounded ==false) {
+            if (velocity.y > 0 || grounded == false) {
                 playerState = State.Jump;
+            }
+            else if (specialPlayerState == State.Duck) {
+                specialPlayerState = State.Duck;
             }
             else {
                 playerState = State.Idle;
@@ -127,6 +138,9 @@ public class PlayerController {
         else if (playerState == State.Idle) {
             player.currentAnimation = "idle";
         }
+        else if (specialPlayerState == State.Duck) {
+            player.currentAnimation = "duck";
+        }
     }
     private static void setLeftAnimation() {
         if (playerState == State.Walk) {
@@ -137,6 +151,9 @@ public class PlayerController {
         }
         else if (playerState == State.Idle) {
             player.currentAnimation = "idleFlip";
+        }
+        else if (specialPlayerState == State.Duck) {
+            player.currentAnimation = "duckFlip";
         }
     }
 }

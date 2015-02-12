@@ -36,8 +36,8 @@ public class CameraController {
         //clamp(float value, float min, float max)
         float width = Gdx.graphics.getWidth();
         float height = Gdx.graphics.getHeight();
-        camera.position.x = MathUtils.clamp(PlayerController.player.position.x, camera.viewportWidth / 2f, width);
-        camera.position.y = MathUtils.clamp(PlayerController.player.position.y, camera.viewportHeight / 2f, height);
+        camera.position.x = MathUtils.clamp(PlayerController.player.position.x, camera.viewportWidth / 2f, width / (70f - 20f));
+        camera.position.y = MathUtils.clamp(PlayerController.player.position.y, camera.viewportHeight / 2f, height / (90f));
         //updates camera if it moves.
         camera.update();
     }
