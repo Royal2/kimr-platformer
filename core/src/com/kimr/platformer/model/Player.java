@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.kimr.platformer.controller.LevelController;
+import com.kimr.platformer.controller.PlayerController;
 
 import java.awt.Polygon;
 
@@ -52,6 +53,8 @@ public class Player extends Sprite {
         //Setting shape of player body.
         PolygonShape rectangleShape = new PolygonShape();   //Creating shape.
         rectangleShape.setAsBox(this.width / 2f, this.height / 2f, new Vector2(this.width / 2f, this.height / 2f), 0f);  //Center of player body.
+        //Duck box.
+        //rectangleShape.setAsBox(this.width / 2f, this.height / 2.8f, new Vector2(this.width / 2f, this.height / 2.8f), 0f);  //Center of player body.
 
         PolygonShape sensorShape = new PolygonShape();
         sensorShape.setAsBox(this.width / 2.2f, this.height / 32f, new Vector2(this.width / 2f, 0f), 0f);
