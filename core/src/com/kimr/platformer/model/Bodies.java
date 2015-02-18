@@ -144,5 +144,40 @@ public class Bodies {
             rectangleShape.dispose();
 
         }
+
+        else if(bodyType.equalsIgnoreCase("ascend")) {
+            RectangleMapObject rectangleObject = (RectangleMapObject)mapObject;
+            //Create bodyDefinition.
+            BodyDef bodyDefinition = new BodyDef();
+            //Set type.
+            bodyDefinition.type = BodyDef.BodyType.StaticBody;  //StaticBody stays in place.
+            //Set position.
+            bodyDefinition.position.set(rectangleObject.getRectangle().x * LevelController.UNIT_SCALE,
+                    rectangleObject.getRectangle().y * LevelController.UNIT_SCALE);
+            //Create body.
+            Body physicsBody = LevelController.gameWorld.createBody(bodyDefinition);
+
+            //physicsBody.setUserData(LevelController.spriteSheet);   //sets user data.
+            //Sets fixed rotation.
+            //physicsBody.setFixedRotation(true);
+
+            //Create shape.
+            PolygonShape sensorShape = new PolygonShape();
+            sensorShape.setAsBox(rectangleObject.getRectangle().width * LevelController.UNIT_SCALE / 2f,
+                    rectangleObject.getRectangle().height * LevelController.UNIT_SCALE / 2f,
+                    new Vector2(rectangleObject.getRectangle().width * LevelController.UNIT_SCALE / 2f,
+                            rectangleObject.getRectangle().height * LevelController.UNIT_SCALE / 2f), 0f);
+
+            //Create fixtureDefinition.
+            FixtureDef fixtureDefinitionSensor = new FixtureDef();
+            fixtureDefinitionSensor.shape = sensorShape;
+            fixtureDefinitionSensor.isSensor = true;
+
+            //Attatch shape to physics body.
+            physicsBody.createFixture(fixtureDefinitionSensor);
+            sensorShape.dispose();
+
+        }
+
     }
 }

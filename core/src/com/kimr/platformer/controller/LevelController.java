@@ -116,5 +116,11 @@ public class LevelController {
         for(MapObject mapObject : blockObjects) {
             Bodies.createBody(mapObject);
         }
+
+        MapObjects ascendObjects = level.getMapObjects(level.getMapLayer("ascend"));
+
+        for(MapObject mapObject : ascendObjects) {
+            Bodies.createBody(mapObject);
+        }
     }
 }

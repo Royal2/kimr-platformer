@@ -22,16 +22,24 @@ public class CollisionListener implements ContactListener {
         boolean sensorA = fixtureA.isSensor();
         boolean sensorB = fixtureB.isSensor();
 
-        if(sensorA || sensorB) {
-            //System.out.println("Fixture A was a sensor.");
+        //if(sensorA || sensorB) {
+        //    //System.out.println("Fixture A was a sensor.");
+        //    PlayerController.grounded = true;
+        //    PlayerController.ascended = true;
+        //}
+        if(sensorA) {
+            System.out.println("Fixture A was a sensor.");
+            PlayerController.ascended = true;
+        }
+        if(sensorB) {
+            System.out.println("Fixture B was a sensor.");
             PlayerController.grounded = true;
-
         }
     }
 
     @Override
     public void endContact(Contact contact) {
-        //System.out.println("End Contact");
+        System.out.println("End Contact");
     }
 
     @Override

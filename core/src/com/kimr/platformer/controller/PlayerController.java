@@ -16,9 +16,10 @@ public class PlayerController {
     public static String specialAction;
 
     public static boolean grounded;
+    public static boolean ascended;
 
     private enum State {
-        Idle, Walk, Jump, JumpFlip, Duck;
+        Idle, Walk, Jump, JumpFlip, Duck, Climb;
     }
     private static State playerState;
 
