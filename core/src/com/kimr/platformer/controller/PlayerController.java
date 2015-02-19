@@ -64,6 +64,24 @@ public class PlayerController {
             player.direction = "left";
         }
         //Up Key Binding.
+        if(specialAction.equalsIgnoreCase("jump") && PlayerController.ascended == true) {
+            if(Math.abs(velocity.y) > 1) {
+                velocity.y = 0;
+                player.physicsBody.setLinearVelocity(velocity.x, velocity.y);
+            }
+            player.physicsBody.applyLinearImpulse(0f, 4f, position.x, position.y, true);
+        }
+        else if (specialAction.equalsIgnoreCase("jump") && PlayerController.grounded == true) {
+            //set y velocity back down to zero.
+            if(Math.abs(velocity.y) > 1) {
+                velocity.y = 0;
+                player.physicsBody.setLinearVelocity(velocity.x, velocity.y);
+            }
+            player.physicsBody.applyLinearImpulse(0f, 4f, position.x, position.y, true);
+            grounded = false;
+        }
+
+        /*
         if(specialAction.equalsIgnoreCase("jump") && PlayerController.grounded == true) {
             //set y velocity back down to zero.
             if(Math.abs(velocity.y) > 1) {
@@ -73,6 +91,7 @@ public class PlayerController {
             player.physicsBody.applyLinearImpulse(0f, 4f, position.x, position.y, true);
             grounded = false;
         }
+        */
         //Down Key Binding.
         if(specialAction.equalsIgnoreCase("down") && PlayerController.grounded == true) {
             player.physicsBody.applyLinearImpulse(0f, 0f, position.x, position.y, true);
@@ -142,6 +161,9 @@ public class PlayerController {
         else if (playerState == State.Duck) {
             player.currentAnimation = "duck";
         }
+        else if (playerState == State.Climb) {
+            player.currentAnimation = "climb";
+        }
     }
     private static void setLeftAnimation() {
         if (playerState == State.Walk) {
@@ -155,6 +177,9 @@ public class PlayerController {
         }
         else if (playerState == State.Duck) {
             player.currentAnimation = "duckFlip";
+        }
+        else if (playerState == State.Climb) {
+            player.currentAnimation = "climbFlip";
         }
     }
 }

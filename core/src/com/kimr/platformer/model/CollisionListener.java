@@ -40,6 +40,12 @@ public class CollisionListener implements ContactListener {
     @Override
     public void endContact(Contact contact) {
         System.out.println("End Contact");
+        Fixture fixtureA = contact.getFixtureA();
+        boolean sensorA = fixtureA.isSensor();
+        if(sensorA == false) {
+            System.out.println("Fixture A is off.");
+            PlayerController.ascended = false;
+        }
     }
 
     @Override
